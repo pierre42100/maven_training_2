@@ -1,33 +1,36 @@
 package fr.lernejo.tester.internal;
 
 import fr.lernejo.tester.SomeLernejoTests;
+import fr.lernejo.tester.api.TestMethod;
 
 public class TestClassDescriptionLernejoTests {
-    private static void assertEq(int expect, int got) {
+    public static void assertEq(int expect, int got) {
         if (expect != got)
             throw new RuntimeException("Assertion failed, expected " + expect + ", got " + got + "!");
     }
 
-    private static void myAssert(boolean test) {
+    public static void assertTrue(boolean test) {
         if (!test)
-            throw new RuntimeException("Assertion failed!");
+            throw new RuntimeException("Assertion failed (expected true got false)!");
     }
 
-    public static void test() {
+    @TestMethod
+    public void test() {
         try {
             var list = new TestClassDescription(SomeLernejoTests.class).listTestMethods();
 
             assertEq(2, list.size());
 
-            myAssert(list.contains(SomeLernejoTests.class.getMethod("ok")));
-            myAssert(list.contains(SomeLernejoTests.class.getMethod("ko")));
+            assertTrue(list.contains(SomeLernejoTests.class.getMethod("ok")));
+            assertTrue(list.contains(SomeLernejoTests.class.getMethod("ko")));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
-            myAssert(false);
+            assertTrue(false);
         }
     }
 
     public static void main(String[] args) {
-        test();
+        new TestClassDescriptionLernejoTests().test();
+        new TestClassDiscovererLernejoTests().testCount();
     }
 }
