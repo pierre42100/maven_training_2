@@ -13,7 +13,7 @@ public class TestClassDiscoverer {
         this.pkgName = pkgName;
     }
 
-    List<TestClassDescription> listTestClasses() {
+    public List<TestClassDescription> listTestClasses() {
         Reflections reflections = new Reflections(pkgName, new SubTypesScanner(false));
         Set<Class<?>> allTypes = reflections.getSubTypesOf(Object.class);
 

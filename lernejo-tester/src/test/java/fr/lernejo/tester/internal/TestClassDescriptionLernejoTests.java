@@ -1,6 +1,7 @@
 package fr.lernejo.tester.internal;
 
 import fr.lernejo.tester.SomeLernejoTests;
+import fr.lernejo.tester.TestRunner;
 import fr.lernejo.tester.api.TestMethod;
 
 public class TestClassDescriptionLernejoTests {
@@ -30,7 +31,6 @@ public class TestClassDescriptionLernejoTests {
     }
 
     public static void main(String[] args) {
-        new TestClassDescriptionLernejoTests().test();
-        new TestClassDiscovererLernejoTests().testCount();
+        TestRunner.main(new String[]{"fr.lernejo.tester"});
     }
 }
